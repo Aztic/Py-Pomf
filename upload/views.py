@@ -26,7 +26,7 @@ def le_name(ini,fin,ext):
 @csrf_exempt
 def index(request):
 	if request.method != 'POST':
-		return HttpResponse()
+		return HttpResponse("Nothing here pal")
 	data ={
 		"success": False
 	}
