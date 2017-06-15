@@ -50,8 +50,3 @@ def index(request):
 			print('im an error :D')
 			pass
 	return JsonResponse(data)
-
-
-
-
-# Create your views here.
