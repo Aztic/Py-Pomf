@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'py_pomf',
-	'USER': 'eien',
-	'PASSWORD':'$DatabasePass1',
+	'USER': 'DATABASE_USER',
+	'PASSWORD':'DATABASE_PASS',
 	'HOST':'localhost'
     }
 }
