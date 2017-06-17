@@ -1,4 +1,5 @@
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import Upload
@@ -35,7 +36,7 @@ def index(request):
 		sha1 = hashlib.sha1()
 		extension = '.' + request.FILES['files[]'].name.split('.')[-1]
 		name = le_name(5,64,extension)
-		path = os.path.join(os.getcwd(),'files',name+extension)
+		path = os.path.join(settings.MEDIA_ROOT, name+extension)
 		try:
 			with open(path,'wb+') as f:
 				for chunk in request.FILES['files[]'].file:
