@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': os.getenv('POMF_DATABASE_NAME'),
         'USER': os.getenv('POMF_DATABASE_USER'),
         'PASSWORD': os.getenv('POMF_DATABASE_PASSWORD'),
-        'HOST': os.getenv('POMF_DATABASE_HOST'),
+        'HOST': os.getenv('POMF_DATABASE_HOST', 'localhost'),
     }
 }
 
