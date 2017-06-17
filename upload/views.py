@@ -8,6 +8,7 @@ import datetime
 import string #for generating a random name
 import hashlib #for hash in response
 import os
+import urllib.parse
 
 def random_name(ini,fin):
 	options = string.ascii_uppercase + string.ascii_lowercase
@@ -46,7 +47,7 @@ def index(request):
 			element = Upload(user_id=0,filename=name+extension,hash_value=sha1.hexdigest(),original_filename=request.FILES['files[]'].name,size=size,created=datetime.datetime.now())
 			element.save()
 			data['success'] = True
-			data['files'] = [{'hash':sha1.hexdigest(),'name':name+extension,'url':'soon tm','size':size}]
+			data['files'] = [{'hash':sha1.hexdigest(),'name':name+extension,'url':urllib.parse.urljoin(settings.MEDIA_URL, name+extension),'size':size}]
 		except:
 			print('im an error :D')
 			pass
