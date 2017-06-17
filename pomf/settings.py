@@ -120,7 +120,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-MEDIA_URL = '/files/'
-MEDIA_ROOT = os.path.join(os.getcwd(),'files')
-STATIC_ROOT = ''
-STATIC_URL = '/static/'
+MEDIA_URL = os.getenv('POMF_MEDIA_URL', '/files/')
+MEDIA_ROOT = os.getenv('POMF_MEDIA_ROOT', os.path.join(os.getcwd(), 'files'))
+STATIC_ROOT = os.getenv('POMF_STATIC_ROOT', '')
+STATIC_URL = os.getenv('POMF_STATIC_URL', '/static/')
