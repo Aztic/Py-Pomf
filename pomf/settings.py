@@ -20,12 +20,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_=t+jkz814kaj!mxr4g_9)ls4zl=e%l8d11ukdh$6nznubu1ty'
+DEFAULT_SECRET_KEY = '_=t+jkz814kaj!mxr4g_9)ls4zl=e%l8d11ukdh$6nznubu1ty'
+SECRET_KEY = os.getenv('POMF_SECRET_KEY', DEFAULT_SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('POMF_ENV') != 'production'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
+
+    'tomori.moe',
+]
 
 
 # Application definition
@@ -81,6 +88,9 @@ DATABASES = {
         'USER': os.getenv('POMF_DATABASE_USER'),
         'PASSWORD': os.getenv('POMF_DATABASE_PASSWORD'),
         'HOST': os.getenv('POMF_DATABASE_HOST', 'localhost'),
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
@@ -124,3 +134,10 @@ MEDIA_URL = os.getenv('POMF_MEDIA_URL', '/files/')
 MEDIA_ROOT = os.getenv('POMF_MEDIA_ROOT', os.path.join(os.getcwd(), 'files'))
 STATIC_ROOT = os.getenv('POMF_STATIC_ROOT', '')
 STATIC_URL = os.getenv('POMF_STATIC_URL', '/static/')
+
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
