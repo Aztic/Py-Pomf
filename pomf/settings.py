@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'pomf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'py_pomf',
-	'USER': 'DATABASE_USER',
-	'PASSWORD':'DATABASE_PASS',
-	'HOST':'localhost'
+        'NAME': os.getenv('POMF_DATABASE_NAME'),
+        'USER': os.getenv('POMF_DATABASE_USER'),
+        'PASSWORD': os.getenv('POMF_DATABASE_PASSWORD'),
+        'HOST': os.getenv('POMF_DATABASE_HOST'),
     }
 }
 
