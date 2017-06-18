@@ -20,5 +20,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'upload',include('upload.urls'))
+    url(r'upload',include('upload.urls')),
+    url(r'^signup/',include('signup.urls')),
+    url(r'^login/',include('login.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

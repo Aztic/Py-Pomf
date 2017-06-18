@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('POMF_SECRET_KEY', DEFAULT_SECRET_KEY)
 DEBUG = os.getenv('POMF_ENV') != 'production'
 
 ALLOWED_HOSTS = [
-    'localhost',
+   'localhost',
     '127.0.0.1',
     '[::1]',
 
@@ -39,6 +39,8 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'upload.apps.UploadConfig',
+    'signup.apps.SignupConfig',
+    'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,6 +136,7 @@ MEDIA_URL = os.getenv('POMF_MEDIA_URL', '/files/')
 MEDIA_ROOT = os.getenv('POMF_MEDIA_ROOT', os.path.join(os.getcwd(), 'files'))
 STATIC_ROOT = os.getenv('POMF_STATIC_ROOT', '')
 STATIC_URL = os.getenv('POMF_STATIC_URL', '/static/')
+
 
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True

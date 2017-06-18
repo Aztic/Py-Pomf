@@ -27,12 +27,13 @@ def le_name(ini,fin,ext):
 @csrf_exempt
 def index(request):
 	if request.method != 'POST':
-      	#Later, redirect to main page
 		return HttpResponse("Nothing here pal")
 	data ={
 		"success": False
 	}
 	if 'files[]' in request.FILES:
+		print(request.user.is_authenticated())
+		print(request.user.id)
 		sha1 = hashlib.sha1()
 		extension = '.' + request.FILES['files[]'].name.split('.')[-1]
 		name = le_name(5,64,extension)
