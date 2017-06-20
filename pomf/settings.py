@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'upload.apps.UploadConfig',
     'signup.apps.SignupConfig',
     'login.apps.LoginConfig',
+    'home.apps.HomeConfig',
+    'logout.apps.LogoutConfig',
+    'user.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,7 +67,7 @@ ROOT_URLCONF = 'pomf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

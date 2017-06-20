@@ -33,19 +33,18 @@ def index(request):
 		"success": False
 	}
 	if 'files[]' in request.FILES:
-		print(request.user.is_authenticated())
-		print(request.user.id)
 		sha1 = hashlib.sha1()
 		extension = '.' + request.FILES['files[]'].name.split('.')[-1]
 		name = le_name(5,64,extension)
 		path = os.path.join(settings.MEDIA_ROOT, name+extension)
+		u_id = 0 if not request.user.is_authenticated() else request.user.id
 		try:
 			with open(path,'wb+') as f:
 				for chunk in request.FILES['files[]'].file:
 					sha1.update(chunk)
 					f.write(chunk)
 			size = os.path.getsize(path)
-			element = Upload(user_id=0,filename=name+extension,hash_value=sha1.hexdigest(),original_filename=request.FILES['files[]'].name,size=size,created=datetime.datetime.now())
+			element = Upload(user_id=u_id,filename=name+extension,hash_value=sha1.hexdigest(),original_filename=request.FILES['files[]'].name,size=size,created=datetime.datetime.now())
 			element.save()
 			data['success'] = True
 			data['files'] = [{'hash':sha1.hexdigest(),'name':name+extension,'url':urllib.parse.urljoin(settings.MEDIA_URL, name+extension),'size':size}]

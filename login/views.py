@@ -16,12 +16,9 @@ def index(request):
 		if user is not None:
 			login(request,user)
 			request.session.set_expiry(300)
-			print(":)")
-			print(request.user.is_authenticated())
-			print(request.user.id)
-			return HttpResponse('You are logged in')
+			return redirect('/')
 		else:
-			return HttpResponse('Is not valid')
+			return redirect('/login/')
 	else:
 		if request.user.is_authenticated():
 			return HttpResponse("Already logged")
